@@ -33,10 +33,10 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-lg text-cream font-semibold mb-3">Navegação</h4>
             <nav className="flex flex-col gap-2">
-              <Link href="/" className="text-cream/50 hover:text-gold transition-colors text-xs">Home</Link>
-              <Link href="/blog" className="text-cream/50 hover:text-gold transition-colors text-xs">Blog</Link>
-              <Link href="/biblioteca" className="text-cream/50 hover:text-gold transition-colors text-xs">Biblioteca</Link>
-              <Link href="/sobre" className="text-cream/50 hover:text-gold transition-colors text-xs">Sobre</Link>
+              <Link href="/" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Home</Link>
+              <Link href="/blog" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Blog</Link>
+              <Link href="/biblioteca" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Biblioteca</Link>
+              <Link href="/sobre" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Sobre</Link>
             </nav>
           </div>
 
@@ -44,19 +44,32 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-lg text-cream font-semibold mb-3">Categorias</h4>
             <nav className="flex flex-col gap-2">
-              <Link href="/blog?categoria=artes-liberais" className="text-cream/50 hover:text-gold transition-colors text-xs">Artes Liberais</Link>
-              <Link href="/blog?categoria=ensaios-critica" className="text-cream/50 hover:text-gold transition-colors text-xs">Ensaios &amp; Crítica</Link>
-              <Link href="/blog?categoria=filosofia" className="text-cream/50 hover:text-gold transition-colors text-xs">Filosofia</Link>
-              <Link href="/blog?categoria=notas-escrivaninha" className="text-cream/50 hover:text-gold transition-colors text-xs">Notas da Escrivaninha</Link>
+              <Link href="/blog?categoria=artes-liberais" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Artes Liberais</Link>
+              <Link href="/blog?categoria=ensaios-critica" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Ensaios &amp; Crítica</Link>
+              <Link href="/blog?categoria=filosofia" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Filosofia</Link>
+              <Link href="/blog?categoria=notas-escrivaninha" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Notas da Escrivaninha</Link>
             </nav>
           </div>
         </div>
 
         {/* Bottom */}
         <div className="border-t border-cream/10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-cream/30 text-xs font-ui">
-            © {currentYear} Daniel Almeida. Todos os direitos reservados.
-          </p>
+          <div className="flex flex-col gap-1 items-center md:items-start">
+            <p className="text-cream/30 text-xs font-ui">
+              © {currentYear} Daniel Almeida. Todos os direitos reservados.
+            </p>
+            <p className="text-cream/40 text-[10px] font-ui">
+              Desenvolvido por{' '}
+              <a
+                href="https://nexoratecnologia.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="!text-cream/80 hover:!text-gold font-medium transition-colors duration-300 relative py-0.5 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
+              >
+                nexoratecnologia.com
+              </a>
+            </p>
+          </div>
           <p className="text-cream/20 text-[10px] font-ui italic">
             «Omnia in Christo instaurare»
           </p>
