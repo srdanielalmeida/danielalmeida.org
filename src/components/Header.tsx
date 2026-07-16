@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
-  { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
   { href: '/biblioteca', label: 'Biblioteca' },
   { href: '/sobre', label: 'Sobre' },
@@ -20,12 +20,13 @@ export function Header() {
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-3" id="header-logo">
+          <Image src="/brasao.svg" alt="Brasão" width={36} height={36} className="opacity-60 group-hover:opacity-100 transition-opacity" />
           <div className="flex flex-col">
             <span className="font-heading text-2xl font-semibold text-navy tracking-wide leading-none group-hover:text-gold transition-colors duration-200">
               Daniel Almeida
             </span>
-            <span className="font-ui text-[10px] tracking-[0.3em] text-bronze uppercase mt-0.5">
-              Desenvolvimento &amp; Santidade
+            <span className="font-ui text-[10px] tracking-[0.2em] text-bronze uppercase mt-0.5">
+              Quaerens veritatem inveni
             </span>
           </div>
         </Link>

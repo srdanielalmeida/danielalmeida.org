@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Arabesque } from './Arabesque';
 
 export function Footer() {
@@ -22,7 +23,10 @@ export function Footer() {
         <div className="py-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm font-ui">
           {/* About */}
           <div>
-            <h4 className="font-heading text-lg text-cream font-semibold mb-3">Daniel Almeida</h4>
+            <div className="flex items-center gap-2 mb-3">
+              <Image src="/brasao.svg" alt="Brasão" width={24} height={24} className="opacity-30 invert" />
+              <h4 className="font-heading text-lg text-cream font-semibold">Daniel Almeida</h4>
+            </div>
             <p className="text-cream/50 leading-relaxed text-xs">
               Reflexões sobre desenvolvimento pessoal, santidade e as camadas da personalidade humana. 
               Um espaço de recolhimento intelectual.
@@ -33,7 +37,6 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-lg text-cream font-semibold mb-3">Navegação</h4>
             <nav className="flex flex-col gap-2">
-              <Link href="/" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Home</Link>
               <Link href="/blog" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Blog</Link>
               <Link href="/biblioteca" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Biblioteca</Link>
               <Link href="/sobre" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Sobre</Link>
