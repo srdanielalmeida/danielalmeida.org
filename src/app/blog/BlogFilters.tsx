@@ -2,13 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { CATEGORIES, CATEGORY_LABELS, ArticleCategory } from '@/lib/types';
+import { CATEGORY_LABELS, ArticleCategory } from '@/lib/types';
 
 interface BlogFiltersProps {
   activeCategory?: string;
+  categories: ArticleCategory[];
 }
 
-export function BlogFilters({ activeCategory }: BlogFiltersProps) {
+export function BlogFilters({ activeCategory, categories }: BlogFiltersProps) {
+  if (!categories || categories.length === 0) return null;
+
   return (
     <div className="flex flex-wrap items-center justify-center gap-2 mb-10" id="blog-filters">
       <Link
@@ -21,7 +24,7 @@ export function BlogFilters({ activeCategory }: BlogFiltersProps) {
       >
         Todos
       </Link>
-      {CATEGORIES.map(cat => (
+      {categories.map(cat => (
         <Link
           key={cat}
           href={`/blog?categoria=${cat}`}

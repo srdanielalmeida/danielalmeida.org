@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Article, CATEGORIES, CATEGORY_LABELS, ArticleCategory, ArticleStatus } from '@/lib/types';
 import { slugify, calculateReadingTime, generateExcerpt } from '@/lib/utils';
 import { ArticleContent } from '@/components/ArticleContent';
+import { MarkdownEditor } from '@/components/MarkdownEditor';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 export default function EditArticlePage() {
@@ -308,16 +309,12 @@ export default function EditArticlePage() {
               Conteúdo *
             </label>
             <p className="font-ui text-[10px] text-gray-400 mb-2">
-              Use <code className="bg-gray-100 px-1 rounded"># Subtítulo</code> para headings,{' '}
-              <code className="bg-gray-100 px-1 rounded">&gt; Citação</code> para blockquotes,{' '}
-              <code className="bg-gray-100 px-1 rounded">- Item</code> para listas.
+              Você pode usar os atalhos acima ou digitar a formatação manualmente.
             </p>
-            <textarea
+            <MarkdownEditor
               id="edit-content"
               value={content}
-              onChange={e => setContent(e.target.value)}
-              className="input-field"
-              rows={20}
+              onChange={setContent}
             />
           </div>
 

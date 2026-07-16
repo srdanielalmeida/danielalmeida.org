@@ -3,8 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Arabesque } from './Arabesque';
 
-export function Footer() {
+import { CATEGORY_LABELS } from '@/lib/types';
+import { getRelevantCategories } from '@/lib/getRelevantCategories';
+
+export async function Footer() {
   const currentYear = new Date().getFullYear();
+  const relevantCategories = await getRelevantCategories();
+  const topCategories = relevantCategories.slice(0, 4); // Only show top 4 in footer
 
   return (
     <footer className="bg-navy text-cream/80 mt-auto">
@@ -20,7 +25,7 @@ export function Footer() {
         </div>
 
         {/* Content */}
-        <div className="py-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm font-ui">
+        <div className={`py-8 grid grid-cols-1 ${topCategories.length > 0 ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-8 text-sm font-ui`}>
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-3">
@@ -44,15 +49,19 @@ export function Footer() {
           </div>
 
           {/* Categories */}
-          <div>
-            <h4 className="font-heading text-lg text-cream font-semibold mb-3">Categorias</h4>
-            <nav className="flex flex-col gap-2">
-              <Link href="/blog?categoria=artes-liberais" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Artes Liberais</Link>
-              <Link href="/blog?categoria=ensaios-critica" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Ensaios &amp; Crítica</Link>
-              <Link href="/blog?categoria=filosofia" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Filosofia</Link>
-              <Link href="/blog?categoria=notas-escrivaninha" className="!text-cream/50 hover:!text-gold transition-colors text-xs">Notas da Escrivaninha</Link>
-            </nav>
-          </div>
+          {topCategories.length > 0 && (
+            <div>
+              <h4 className="font-heading text-lg text-cream font-semibold mb-3">Categorias em Destaque</h4>
+              <nav className="flex flex-col gap-2">
+                {topCategories.map(cat => (
+                  <Link key={cat} href={`/blog?categoria=${cat}`} className="!text-cream/50 hover:!text-gold transition-colors text-xs">
+                    {CATEGORY_LABELS[cat]}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          )}
+
         </div>
 
         {/* Bottom */}

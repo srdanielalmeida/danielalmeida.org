@@ -3,8 +3,9 @@ import { createClient } from '@/lib/supabase/server';
 import { ArticleCard } from '@/components/ArticleCard';
 import { Arabesque } from '@/components/Arabesque';
 import { Article, CATEGORIES, CATEGORY_LABELS, ArticleCategory } from '@/lib/types';
-import type { Metadata } from 'next';
+import { getRelevantCategories } from '@/lib/getRelevantCategories';
 import { BlogFilters } from './BlogFilters';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -43,6 +44,7 @@ export default async function BlogPage({
   const perPage = 10;
 
   const allArticles = await getArticles(category);
+  const relevantCategories = await getRelevantCategories();
   const totalPages = Math.max(1, Math.ceil(allArticles.length / perPage));
   const currentPage = Math.min(Math.max(1, page), totalPages);
   const articles = allArticles.slice((currentPage - 1) * perPage, currentPage * perPage);
@@ -61,8 +63,9 @@ export default async function BlogPage({
           <Arabesque variant="divider" />
         </div>
 
+
         {/* Category Filters */}
-        <BlogFilters activeCategory={category} />
+        <BlogFilters activeCategory={category} categories={relevantCategories} />
 
         {/* Articles Grid */}
         {articles.length > 0 ? (

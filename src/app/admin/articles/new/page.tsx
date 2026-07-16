@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import { CATEGORIES, CATEGORY_LABELS, ArticleCategory, ArticleStatus } from '@/lib/types';
 import { slugify, calculateReadingTime, generateExcerpt } from '@/lib/utils';
 import { ArticleContent } from '@/components/ArticleContent';
+import { MarkdownEditor } from '@/components/MarkdownEditor';
 
 export default function NewArticlePage() {
   const router = useRouter();
@@ -297,18 +298,12 @@ export default function NewArticlePage() {
               Conteúdo *
             </label>
             <p className="font-ui text-[10px] text-gray-400 mb-2">
-              Use <code className="bg-gray-100 px-1 rounded"># Subtítulo</code> para headings,{' '}
-              <code className="bg-gray-100 px-1 rounded">&gt; Citação</code> para blockquotes,{' '}
-              <code className="bg-gray-100 px-1 rounded">- Item</code> para listas.
-              Duas linhas vazias criam um divisor decorativo.
+              Você pode usar os atalhos acima ou digitar a formatação manualmente. Duas linhas vazias criam um divisor decorativo.
             </p>
-            <textarea
+            <MarkdownEditor
               id="article-content"
               value={content}
-              onChange={e => setContent(e.target.value)}
-              placeholder="Escreva seu artigo aqui..."
-              className="input-field"
-              rows={20}
+              onChange={setContent}
             />
           </div>
 

@@ -115,19 +115,34 @@ function parseContent(content: string): Block[] {
   return blocks;
 }
 
+function parseInlineMarkup(text: string): string {
+  let html = text;
+  
+  // Bold: **text**
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  
+  // Italic: _text_
+  html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
+  
+  // Links: [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  
+  return html;
+}
+
 function renderBlock(block: Block): React.ReactNode {
   switch (block.type) {
     case 'paragraph':
-      return <p>{block.text}</p>;
+      return <p dangerouslySetInnerHTML={{ __html: parseInlineMarkup(block.text) }} />;
     case 'heading':
-      return <h2>{block.text}</h2>;
+      return <h2 dangerouslySetInnerHTML={{ __html: parseInlineMarkup(block.text) }} />;
     case 'quote':
-      return <blockquote>{block.text}</blockquote>;
+      return <blockquote dangerouslySetInnerHTML={{ __html: parseInlineMarkup(block.text) }} />;
     case 'list':
       return (
         <ul>
           {block.items.map((item, i) => (
-            <li key={i}>{item}</li>
+            <li key={i} dangerouslySetInnerHTML={{ __html: parseInlineMarkup(item) }} />
           ))}
         </ul>
       );
