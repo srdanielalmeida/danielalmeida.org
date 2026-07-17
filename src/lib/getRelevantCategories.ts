@@ -13,8 +13,8 @@ export async function getRelevantCategories(): Promise<ArticleCategory[]> {
 
     const stats: Record<string, { count: number; latestDate: number }> = {};
 
-    data.forEach((article) => {
-      const cat = article.category;
+    data.forEach((article: any) => {
+      const cat = article.category as ArticleCategory;
       const date = new Date(article.published_date).getTime();
       
       if (!stats[cat]) {
